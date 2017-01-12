@@ -1,0 +1,7 @@
+{
+    "errors": {
+        "-1":   "No Endpoint",
+        "1":    "Incorrect data",
+        "2":    "Incorrect form method (GET/ POST)"
+    }
+}
