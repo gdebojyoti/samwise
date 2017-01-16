@@ -15,7 +15,7 @@ class MyAPI extends API {
         else return array(
             "sts" => -1,
             "msg" => "Invalid request"
-        );;
+        );
     }
 
     protected function institutes($verb, $args) {
@@ -24,6 +24,6 @@ class MyAPI extends API {
         else return array(
             "sts" => -1,
             "msg" => "Invalid request"
-        );;
+        );
     }
 }
