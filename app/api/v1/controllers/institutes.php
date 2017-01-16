@@ -19,11 +19,17 @@ switch ($verb) {
 
             $data = Institute::search($query);
         }
+        // get list of all institutes if no "name" is supplied
         else {
-            $data = array(
-                "sts" => 1,
-                "msg" => "name required"
+            // $data = array(
+            //     "sts" => 1,
+            //     "msg" => "name required"
+            // );
+            $query = array(
+                "name" => ""
             );
+
+            $data = Institute::search($query);
         }
         break;
 
