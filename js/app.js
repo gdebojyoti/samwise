@@ -64,7 +64,6 @@ function register() {
 function collegeRegistration() {
     
 	var college = collegeDetails.college.value;
-	var univname = document.getElementsByName('university')[0].value;
 	var email= collegeDetails.email.value;
     var phone = document.getElementsByName('phone')[0].value;
     var street_address = document.getElementsByName('street_address')[0].value;
@@ -73,7 +72,7 @@ function collegeRegistration() {
     var pin = document.getElementsByName('pin')[0].value;
     var country = document.getElementsByName('country')[0].value;
 
-    if (college == "") {
+    if (college == "" || email == "") {
         fireToast("error", "Please Fill the mandatory fields");
         return false;
     }
@@ -85,17 +84,16 @@ function collegeRegistration() {
 	
     $.ajax({
         method: "POST",
-        url: API.base + API.version + "students/collegeRegistration",
+        url: API.base + API.version + "institutes/register",
         data: {
-            college: college,
-			univname: university,
-			coll: college,
+            name: college,
             email: email,         
             phone: phone,
             street_address: street_address,
             city: city,
             state: state,
             pin: pin,
+			type:2,
             country: country,
             institute_id: 1,
         }

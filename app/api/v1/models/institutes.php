@@ -34,7 +34,7 @@ class Institute {
         else {
             $req = $db->prepare('SELECT * FROM institutes');
         }
-        
+
         $req->execute(array('name' => "%" . $query['name'] . "%"));
 
         foreach($req->fetchAll() as $inst) {

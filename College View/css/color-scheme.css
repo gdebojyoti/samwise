@@ -23,6 +23,7 @@ body,
 .course-details,
 #disqus_thread {
   background-color: white;
+  height:400px;
 }
 
 .menu-toggle-btn {
@@ -43,8 +44,7 @@ body,
   background-color: rgba(0, 0, 0, 0.6);
 }
 
-.mainBtn,
-.request-information .submit_field .mainBtn,
+
 .tag-items a,
 .site-header,
 .main-menu li ul,
@@ -54,6 +54,13 @@ body,
   background-color: #003a6a;
 }
 
+.mainBtn,
+.request-information .submit_field .mainBtn
+{
+	background-color: #003a6a;
+	width:30%;
+	text-align:center;
+}
 .main-navigation,
 .site-footer {
   background-color: #004884;

@@ -88,7 +88,7 @@
                         <form class="request-info clearfix"> 
                             <div class="full-row">						
                                 <label for="yourname">Full Name:</label>
-                                <input type="text" id="yourname" name="yourname">
+                                <input type="text" id="yourname" name="name">
                             </div>
 							<div class="full-row">			
                                 <label for="cat">College/University Name:</label>                
@@ -108,18 +108,18 @@
 
                             <div class="full-row">
                                 <label for="email-id">Email Address:</label>
-                                <input type="text" id="email-id" name="email-id">
+                                <input type="text" id="email-id" name="email">
                             </div> <!-- /.full-row -->
 							
 							   <div class="full-row">
                                 <label for="phone number">Phone Number:</label>
-                                <input type="text" id="phone-number" name="phone-number">
+                                <input type="text" id="phone-number" name="phone">
                             </div> <!-- /.full-row -->
                             
                             <div class="full-row">
                                 <div class="submit_field">
                                     <span class="small-text pull-left">Register as a Student</span>
-                                    <input class="mainBtn pull-right" type="submit" name="submit" value="Submit Request">
+                                    <button class="mainBtn pull-right" type="submit" method="post" onclick="register()" name="submit">Submit</button>
                                 </div> <!-- /.submit-field -->
                             </div> <!-- /.full-row -->
 
@@ -140,19 +140,23 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="widget-item" id="college-info">
-                            <h2 class="welcome-text">List Of Registered Colleges "Get College Name From Database"</h2
-							<table style="width:100%">
-							  <tr>
-								<th>Name</th><br>
-								<th>Name</th></br>										
-							  </tr>							 
-							</table>
+						<br>
+                            <h2 class="welcome-text">List Of Colleges Already Registered With Bhasic</h2>
+							<body onload="listCollege()">
+							<br>							
+							<select id="college-list" class="college">
+							  <option selected value="base">List Of Registered Colleges:</option>
+							  <option value="1">Volvo</option>
+							  <option value="2">Saab</option>
+							  <option value="3">Mercedes</option>
+							  <option value="4">Audi</option>
+							</select>
+							</body>
+							
                         </div> 
                     </div> <!-- /.col-md-12 -->
                 </div> <!-- /.row -->
 
-        
-                
                 
             </div> <!-- /.col-md-8 -->
             
@@ -162,7 +166,7 @@
                 <div class="widget-main">
                     <div class="widget-main-title">
                         <h4 class="widget-title">Recent Student Registrations</h4>
-                    </div>
+                    
                     <div class="widget-inner">
                         <div class="prof-list-item clearfix">
                            <div class="prof-thumb">
@@ -193,10 +197,6 @@
                         </div> <!-- /.prof-list-item -->
                     </div> <!-- /.widget-inner -->
                 </div> <!-- /.widget-main -->
-
-                
-
-                
                     </div> <!-- /.widget-inner -->
                 </div> <!-- /.widget-main -->
 
