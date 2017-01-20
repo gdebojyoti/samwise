@@ -55,11 +55,6 @@ switch ($verb) {
             $password = $_POST['password'];
 
             $data = Student::login($email, $password);
-
-            if($data['sts'] == 0) {
-                $_SESSION['session'] = $data['data']->session;
-                $data['data']->session = null;
-            }
         }
         break;
 
