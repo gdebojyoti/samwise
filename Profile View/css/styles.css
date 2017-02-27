@@ -37,7 +37,7 @@ input[type=text] {
 
 
 input[type=button], input[type=submit], input[type=reset] {
-    background-color: red;
+    background-color: #11778e;
     border: none;
     color: white;
     padding: 8px 20px;
@@ -45,6 +45,8 @@ input[type=button], input[type=submit], input[type=reset] {
     margin: 4px 2px;
     cursor: pointer;
 }
+
+
 
 ::-webkit-input-placeholder { /* WebKit browsers */
   color: grey;

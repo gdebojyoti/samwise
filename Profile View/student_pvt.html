@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html">
+  <title>User Profile</title>
+  <meta name="author" content="Jake Rocheleau">
+  <link rel="shortcut icon" href="http://designshack.net/favicon.ico">
+  <link rel="icon" href="http://designshack.net/favicon.ico">
+  <link rel="stylesheet" type="text/css" media="all" href="css/styles.css">
+  <link href='http://fonts.googleapis.com/css?family=Droid+Serif|Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+  <link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
+	<link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
+	<script src="js/modernizr.js"></script> <!-- Modernizr -->
+  	
+</head>
+
+<body>
+ 
+  <div id="w">
+    <div id="content" class="clearfix">
+      <div id="userphoto"><img src="images/avatar.png" alt="default avatar"></div>
+      <header>
+	  <h1>Student Private Profile</h1>
+	  </header>
+	  <br>
+	  <h1>Groups Associated With</h1>
+	   <table>
+			  <thead>
+				<tr>
+				  <th scope="col" colspan="2" align="center">Group Names</th>
+				  
+				</tr>
+			  </thead>
+			  <tbody>
+				<tr>
+				  <td>
+					<strong class="group_mem">Don&#8217;t Make Me Think</strong>
+					
+				  </td>
+				 
+				</tr>
+				<tr>
+				  <td>
+					<strong class="group_mem">A Project Guide to UX Design</strong>
+					
+				  </td>
+				   </td>
+				</tr>
+				<tr>
+				  <td>
+					<strong class="group_mem">Introducing HTML5</strong>
+					
+				  </td>
+				  
+				</tr>
+				<tr>
+				  <td>
+					<strong class="group_mem">Bulletproof Web Design</strong>
+					
+				  </td>
+				  
+				</tr>
+			  </tbody>
+		</table>
+	  
+	  <br>
+      <nav id="profiletabs">
+        <ul class="clearfix">
+        <li><a href="#cd-timeline" class="sel">Project Time-Line</a></li>
+        <li><a href="#group">CreateGroup</a></li>
+		<input type="button" value="LogOut" onclick="location.href = '../index.html'">
+		   
+        </ul>
+      </nav>   
+	      
+      
+	<section id="group" class="hidden">
+        <p>Create Your Group Here:</p>
+		<p>You Can Create a Minimum of 3 and a Max of 9 Group Members </p><br>	
+			<h4>Group Details</h4><br>					
+			<div class="row">				
+				<div id='TextBoxesGroup'>
+				<div id="TextBoxDiv1">							
+				<label>Group Name</label><input type ="text" placeholder="Enter Your Group Name" name="group_name" id="groupname"><br>
+				<label>Member Details</label><br>
+				</div>
+				</div>
+				
+				<input type='button' value='Add Member' id='addButton'>				
+				<input class="submit" type='button' value='Create Group' id='CreateGroup' method="post">
+				<br>
+			</div>
+		
+     </section>
+	  
+	  
+	  <section id="settings" class="hidden">    
+		
+     </section>
+	
+	  
+	  <section id="cd-timeline" class="cd-container">
+		<div class="cd-timeline-block">
+			<div class="cd-timeline-img cd-picture">
+				<img src="images/cd-icon-picture.svg" alt="Picture">
+			</div> <!-- cd-timeline-img -->
+
+			<div class="cd-timeline-content">
+				<h2>Title of Project 1</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
+				<a href="#0" class="cd-read-more">Read more</a>
+				<span id="cd-date">Empty</span>
+			</div> <!-- cd-timeline-content -->
+		</div> <!-- cd-timeline-block -->
+
+		<div class="cd-timeline-block">
+			<div class="cd-timeline-img cd-movie">
+				<img src="images/cd-icon-movie.svg" alt="Movie">
+			</div> <!-- cd-timeline-img -->
+
+			<div class="cd-timeline-content">
+				<h2>Title of Project 2</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde?</p>
+				<a href="#0" class="cd-read-more">Read more</a>
+				<span id="cd-date">Empty</span>
+			</div> <!-- cd-timeline-content -->
+		</div> <!-- cd-timeline-block -->
+
+		<div class="cd-timeline-block">
+			<div class="cd-timeline-img cd-picture">
+				<img src="images/cd-icon-picture.svg" alt="Picture">
+			</div> <!-- cd-timeline-img -->
+
+			<div class="cd-timeline-content">
+				<h2>Title of Project 3</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, obcaecati, quisquam id molestias eaque asperiores voluptatibus cupiditate error assumenda delectus odit similique earum voluptatem doloremque dolorem ipsam quae rerum quis. Odit, itaque, deserunt corporis vero ipsum nisi eius odio natus ullam provident pariatur temporibus quia eos repellat consequuntur perferendis enim amet quae quasi repudiandae sed quod veniam dolore possimus rem voluptatum eveniet eligendi quis fugiat aliquam sunt similique aut adipisci.</p>
+				<a href="#0" class="cd-read-more">Read more</a>
+				<span id="cd-date">Empty</span>
+			</div> <!-- cd-timeline-content -->
+		</div> <!-- cd-timeline-block -->
+
+		<div class="cd-timeline-block">
+			<div class="cd-timeline-img cd-location">
+				<img src="images/cd-icon-location.svg" alt="Location">
+			</div> <!-- cd-timeline-img -->
+
+			<div class="cd-timeline-content">
+				<h2>Title of Project 4</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
+				<a href="#0" class="cd-read-more">Read more</a>
+			<span id="cd-date">Empty</span>
+			</div> <!-- cd-timeline-content -->
+		</div> <!-- cd-timeline-block -->
+
+		<div class="cd-timeline-block">
+			<div class="cd-timeline-img cd-location">
+				<img src="images/cd-icon-location.svg" alt="Location">
+			</div> <!-- cd-timeline-img -->
+
+			<div class="cd-timeline-content">
+				<h2>Title of Project 5</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum.</p>
+				<a href="#0" class="cd-read-more">Read more</a>
+				<span id="cd-date">Empty</span>
+			</div> <!-- cd-timeline-content -->
+		</div> <!-- cd-timeline-block -->
+
+		<div class="cd-timeline-block">
+			<div class="cd-timeline-img cd-movie">
+				<img src="images/cd-icon-movie.svg" alt="Movie">
+			</div> <!-- cd-timeline-img -->
+
+			<div class="cd-timeline-content">
+				<h2>Final Section</h2>
+				<p>This is the content of the last section</p>
+				<span id="cd-date">Feb 26</span>
+			</div> <!-- cd-timeline-content -->
+		</div> <!-- cd-timeline-block -->
+	</section> <!-- cd-timeline -->
+	  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="js/main.js"></script> <!-- Resource jQuery -->
+	  
+    </div><!-- @end #content -->
+  </div><!-- @end #w -->
+<script type="text/javascript">
+$(function(){
+  $('#profiletabs ul li a').on('click', function(e){
+    e.preventDefault();
+    var newcontent = $(this).attr('href');
+    
+    $('#profiletabs ul li a').removeClass('sel');
+    $(this).addClass('sel');
+    
+    $('#content section').each(function(){
+      if(!$(this).hasClass('hidden')) { $(this).addClass('hidden'); }
+    });    
+    $(newcontent).removeClass('hidden');
+  });
+});
+</script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+    var counter = 1;
+
+    $("#addButton").click(function () {
+
+	if(counter>9){
+            alert("Only 9 textboxes allow");
+            return false;
+	}
+
+	var newTextBoxDiv = $(document.createElement('div'))
+	     .attr("id", 'TextBoxDiv' + counter);
+
+	newTextBoxDiv.after().html('<label>Member Name#'+ counter + ' : </label>' +
+	      '<input type="text" name="members' + counter +
+	      '" id="textbox' + counter + '" value="" >');
+
+	newTextBoxDiv.appendTo("#TextBoxesGroup");
+
+
+	counter++;
+     });
+
+     $("#removeButton").click(function () {
+	if(counter==0){
+          alert("No more textbox to remove");
+          return false;
+       }
+
+	counter--;
+
+        $("#TextBoxDiv" + counter).remove();
+
+     });
+  });
+</script>
+<script type="text/javascript">
+
+	var months = ['January','February','March','April','May','June','July',
+	'August','September','October','November','December'];       
+	var tomorrow = new Date();
+	tomorrow.setTime(tomorrow.getTime() + (1000*3600*24));       
+	document.getElementById("cd-date").innerHTML = months[tomorrow.getMonth()]+""+tomorrow.getDate()+","+tomorrow.getFullYear();
+</script>
+</body>
+</html>

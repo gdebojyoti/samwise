@@ -61,8 +61,8 @@
 							<!--<a href="#"  class="btn btn-primary btn-outline" data-toggle="modal" data-target="#DonateModalRegister">Register</a>-->
 							<a href="#" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#SignIn">Sign In</a>					
 							<li><a href="index.html">Home</a></li>
-							<li><a href="#national">National Statistics</a></li>
-							<li><a href="#projects">Projects</a></li> 
+							<li><a href="national_stats.html">National Statistics</a></li>
+						
 							<li><a href="contact.html">Contact Us</a></li>
 							<li><a href="donation.html">Donate</a></li> 
 						</ul>		
@@ -133,41 +133,45 @@ It's an effort towards summoning college students into a <br>collective venture 
     </div>
 		
 			<div class="featured-links row">
-				<a href="College View/index.html" class="featured-link col-md-4 col-sm-4">
-					<span>Welcome to Bhasic</span>
-					<strong>Browse College List</strong>
-				</a>
-				<a href="volunteer.html" class="featured-link col-md-4 col-sm-4">
-					<span>Volunteer</span>
-					<strong>Join Us Today!</strong>
-				</a>
 				<a href="#" class="featured-link col-md-4 col-sm-4" data-toggle="modal" data-target="#CollegeRegister">
-					<span>Services and Project Plan</span>
+					<span>..............</span>
 					<strong>Register Your College</strong>
 				</a>
+				<a href="volunteer.html" class="featured-link col-md-4 col-sm-4">
+					<span>.............</span>
+					<strong>Register As a Student</strong>
+				</a>
+				
+				<a href="College View/index.html" class="featured-link col-md-4 col-sm-4">
+					<span>...........</span>
+					<strong>View Registered Colleges</strong>
+				</a>
+				
+				
 			</div>
             <div class="featured-texts row" id="national">
 					<div class="text-align-center">
-                       	<h2 class="block-title block-title-center">National Statistics</h2>
+                       	<h2 class="block-title block-title-center">Data Overview</h2>
                     </div>
             	<div class="featured-text col-md-3 col-sm-3">
-                	<span>Successful projects</span>
-                    <strong>8</strong>
+                	<span><h5>Total Sum of Completed Projects (Amount) <h5></span>
+                    <strong>INR 8000/-</strong>
                 </div>
             	<div class="featured-text col-md-3 col-sm-3">
-                	<span>People Impacted</span>
+                	<span><h5>Total Number of Registered Colleges<h5></span>
                     <strong>80</strong>
                 </div>
             	<div class="featured-text col-md-3 col-sm-3">
-                	<span>Total amount raised</span>
-                    <strong>INR 1000/-</strong>
+                	<span><h5>Total Number of Members<h5></span>
+                    <strong> 100 </strong>
                 </div>
             	<div class="featured-text col-md-3 col-sm-3">
-                	<span>Total Volunteers</span>
+                	<span><h5>Total Number of Completed Projects<h5></span>
                     <strong>13</strong>
                 </div>
+				<a href="national_stats.html" align="middle" class="btn-read" >Read More</a>
             </div>
-            
+          
            
             <div class="padding-tb75 lgray-bg">
             	<div class="container">
@@ -443,7 +447,8 @@ It's an effort towards summoning college students into a <br>collective venture 
                                 <select class="profile_select">									
                                     <option>Register Me As:</option>
 									<option value ="student">Student</option>
-                                    <option value ="teacher">Teacher</option>                                   
+                                    <option value ="teacher">Professor</option> 
+									<option value ="teacher">Alumni</option>  									
                                 </select><br> <br>
                             </div>
 						</div>
@@ -544,11 +549,25 @@ It's an effort towards summoning college students into a <br>collective venture 
       		</div>
 
       		<div class="modal-body">
-                <input type="text" name = "userid" class="form-control" placeholder="Enter Your User ID">
+                <input type="text" name = "signuserid" class="form-control" placeholder="Enter Your User ID">
                 <input type="text" password = "password" class="form-control" placeholder="Enter Your Password">
 					<div class="modal-footer text-align-center">
-						<button type="button" class="btn btn-primary" onclick="SignIn()">Sign In</button>
-						<div class="spacer-20"></div>
+					<script type = "text/javascript" language = "javascript">
+						function SignIn()
+						{ 
+							var userid = document.form.signuserid.value;
+							
+							if(userid == "")
+							{
+								alert("Please input a Value");
+								return false;						
+							else								
+								window.location.href = "Project_Workflow/index.html";
+							}
+						}
+					</script>
+						<input type ="button" type="button" value="Sign In" class="btn btn-primary" onclick="SignIn()">
+						<br><br>
 						<p class="small">We respect your privacy and no user details are monitored for use in this website</p>
 						</div>
 					</div>

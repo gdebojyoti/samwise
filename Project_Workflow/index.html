@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>BHASIC Project Plan</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="assets/css/form-elements.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+
+ 
+    </head>
+
+    <body>
+
+		<!-- Top menu -->
+		<nav class="navbar navbar-inverse navbar-no-bg" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="index.html">Bootstrap Multi Step Registration Form Template</a>
+				</div>
+			
+				<div class="collapse navbar-collapse" id="top-navbar-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a href="#"><strong>Social</strong></a> 					
+							<span class="li-social">
+								<a href="#"><i class="fa fa-facebook"></i></a> 
+								<a href="#"><i class="fa fa-twitter"></i></a> 
+								<a href="#"><i class="fa fa-envelope"></i></a> 
+								<a href="#"><i class="fa fa-skype"></i></a>
+							</span>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-left">
+					<li>
+							<span class="li-text">
+							<a href="../index.html"><strong>Home | </strong></a>						
+							</span> 
+					</li>
+					<ul class="nav navbar-nav navbar-center">
+					<li>
+							<span class="li-text">
+							<span>
+							<a href="gallery.html"><strong> | Gallery</strong></a>						
+							</span> 
+					</li>
+				</div>
+			</div>
+		</nav>
+
+        <!-- Top content -->
+        <div class="top-content">
+        	
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2 text">
+                            <h1><strong>BHASIC</strong>    Project Plan Workflow</h1>
+                            <div class="description">
+                            	<p>
+	                            	Enter your Project details step by step and get it approved by your college professor.
+	                            	Once Your Professor approves the project, You can start working and get the funding you need.
+                            	</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 form-box">
+                        	
+                        	<form role="form" action="" method="post" class="registration-form" name="projectFlow">
+                        		
+                        		<fieldset>
+		                        	<div class="form-top">
+		                        		<div class="form-top-left">
+		                        			<h3>Step 1 / 3</h3>
+		                            		<p>Welcome To Your Personal Profile</p>
+		                        		</div>
+		                        		<div class="form-top-right">
+		                        			<i class="fa fa-user"></i>
+		                        		</div>
+		                            </div>
+		                            <div class="form-bottom">
+				                    	<div class="form-group">
+				                    		
+				                        <h1> <p>Welcome, <?php echo $_SESSION['name'];?>!</p></h1>
+										<h1> Group Name: <?php echo $_SESSION['groupname'];?></h1>
+										<div class="form-group"></div>
+										<button type="button" class="btn btn-next" >Next</button>
+										<div class="form-top-left">		                        			
+		                        		</div>									
+				                    </div>
+			                    </fieldset>
+								
+			                    
+			                    <fieldset>
+		                        	<div class="form-top">
+		                        		<div class="form-top-left">
+		                        			<h3>Step 2 / 3</h3>
+		                            		<p>Finance - Project Estimation and  </p>
+		                        		</div>
+		                        		<div class="form-top-right">
+		                        			<i class="fa fa-key"></i>
+		                        		</div>
+		                            </div>
+									<div class="form-group">
+				                    		<label class="sr-only" for="form-address">Address</label>
+				                        	<input type="text" name="duration" placeholder="Project Address" class="form-address form-control" id="form-address">
+				                        </div>
+		                            <div class="form-bottom">
+				                        <div class="form-group">
+				                        	<label class="sr-only" for="form-email">Aid Type</label>
+				                        	<select name="form-aid" class="form-email form-control" id="form-email">
+											<option value="1"> Education </option>
+											<option value="2"> Food </option>
+											<option value="3"> Clothing </option>
+											<option value="4"> Medical Utility </option>
+											<option value="5"> Others </option>
+											</select>
+											
+				                        </div>
+				                        <div class="form-group">
+				                    		<label class="sr-only" for="form-duration">Duration</label>
+				                        	<input type="number" name="duration" placeholder="Duration - Number of WEEKS..." class="form-password form-control" id="form-duration">
+				                        </div>
+										
+				                        <div class="form-group">
+				                        	<label class="sr-only" for="form-repeat-amount">Amount</label>
+				                        	<input type="number" name="amount" placeholder="Enter Amount in INR..." 
+				                        				class="form-repeat-password form-control" id="form-repeat-password">
+				                        </div>
+										  <div class="form-group">
+				                        	<label class="sr-only" for="form-email">Funding Type</label>
+				                        	<select id="form-professor" name="form-professor" class="form-email form-control"  onchange="javascript: showhide();">
+											<option value="1"> Fully Funded </option>
+											<option value="2"> Partly Funded </option>
+											<option value="3"> None </option>
+											
+											</select>
+											
+				                        </div>
+										<script>
+											function showhide(){ 
+											
+											if(document.getElementById('form-professor').value == '3'){
+											document.getElementById('professor').required = false;
+											}
+											else{
+											document.getElementById('professor').required = true;
+											}
+											}
+										</script>
+										
+										<div class="form-group">
+				                    		<label class="sr-only" for="form-duration">Professor ID</label>
+				                        	<input type="text"  style="display:block;" name="duration" placeholder="Professor ID" class="form-password form-control" id="professor">
+				                        </div>
+										<textarea name="comment" style="width:740px; height:150px;" form="usrform">Enter Your Project Plan and details here...</textarea><br><br>
+				                        <button type="button" class="btn btn-previous">Previous</button>
+				                        <button type="button" class="btn btn-next">Next</button>
+				                    </div>
+			                    </fieldset>
+			                    
+			                    <fieldset>
+		                        	<div class="form-top">
+		                        		<div class="form-top-left">
+		                        			<h3>Step 3 / 3</h3>
+		                            		<p>PERSONAL CONTACT - A Person who is present nearby to your project site</p>
+		                        		</div>
+		                        		<div class="form-top-right">
+		                        			<i class="fa fa-facebook"></i>
+		                        		</div>
+		                            </div>
+									
+									<div class="form-group">
+									
+										<input type="text" name="Name" placeholder="Name" class="form-name form-control" id="form-name">
+										<input type="text" name="Sex" placeholder="Sex" class="form-name form-control" id="form-name">
+										<input type="text" name="Age" placeholder="Age" class="form-name form-control" id="form-name">
+										<input type="text" name="Occupation" placeholder="Occupation" class="form-name form-control" id="form-name">
+										<input type="text" name="Address" placeholder="Address" class="form-name form-control" id="form-name">
+										<input type="text" name="GPS Co-ordinates" placeholder="GPS Co-ordinates" class="form-name form-control" id="form-name">
+										<input type="number" name="Phone Number" placeholder="Phone Number" class="form-name form-control" id="form-name">
+										<input type="text" name="Email ID" placeholder="Email ID" class="form-name form-control" id="form-name">
+										
+				                    </div>
+									
+		                            <div class="form-bottom">
+				                    	<label>Photo/Video Upload</label>
+                                	<input type="file" name="fileToUpload" id="fileToUpload">
+									<input type="submit" value="Upload Item" name="submit">
+				                        <button type="button" class="btn btn-previous">Previous</button>
+				                        <button type="submit" class="btn" method="post" onclick="submit_project()">Submit</button>
+										<p> By Submitting this form, your data will be sent to professor for validation.<br>Please wait for your project to be approved</p>
+				                    </div>
+			                    </fieldset>
+		                    
+		                    </form>
+		                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+		<footer class="site-footer">
+        <div class="container">
+            
+                <div class="row">
+                    <div class="col-md-12">
+                     <p>&copy; 2016 Bhasic.Org . All Rights Reserved</p>
+                    </div> 
+                    
+                </div> 
+            </div>
+
+        </div>
+    </footer>
+	
+
+        <!-- Javascript -->
+        <script src="assets/js/jquery-1.11.1.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/jquery.backstretch.min.js"></script>
+        <script src="assets/js/retina-1.1.0.min.js"></script>
+        <script src="assets/js/scripts.js"></script>
+      
+    </body>
+
+</html>

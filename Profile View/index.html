@@ -24,7 +24,7 @@
       <header>
 	  <h1>Welcome User </h1>
 	  </header>
-	  
+	  <br>
       <nav id="profiletabs">
         <ul class="clearfix">
         <li><a href="#cd-timeline" class="sel">Project Time-Line</a></li>
@@ -37,27 +37,25 @@
       
 	<section id="group" class="hidden">
         <p>Create Your Group Here:</p>
-		<p>You Can Create a Minimum of 3 and a Max of 5 Group Members </p><br>
-        <form class="college" name ="collegeDetails">	
-		<div class="col-md-6 col-sm-6 donation-form-infocol">
+		<p>You Can Create a Minimum of 3 and a Max of 9 Group Members </p><br>	
 			<h4>Group Details</h4><br>					
-			<div class="row">	
-				
+			<div class="row">				
+				<div id='TextBoxesGroup'>
+				<div id="TextBoxDiv1">							
+				<label>Group Name</label><input type ="text" placeholder="Enter Your Group Name" name="group_name" id="groupname"><br>
+				<label>Member Details</label><br>
 				</div>
-				<input type="text" class="form-control" placeholder="Student Name" name="student_id">
-				<input type="text" class="form-control" placeholder="College/University Name" name="uni_id">
-				<input type="text" class="form-control" placeholder="Email address" name="email_id">                        
-				<input type="text" class="form-control" placeholder="Phone no." name="phone_nm">
-				</div><br>
-				<button class="submit" method ="post" onclick="">Create Group </button>
+				</div>
+				
+				<input type='button' value='Add Member' id='addButton'>				
+				<input class="submit" type='button' value='Create Group' id='CreateGroup' method="post">
+				<br>
 			</div>
-		</form>        
-		<button>
+		
      </section>
 	  
 	  
-	  <section id="settings" class="hidden">
-       
+	  <section id="settings" class="hidden">    
 		
      </section>
 	  
@@ -71,7 +69,7 @@
 				<h2>Title of Project 1</h2>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
 				<a href="#0" class="cd-read-more">Read more</a>
-				<span class="cd-date">Jan 14</span>
+				<span id="cd-date">Empty</span>
 			</div> <!-- cd-timeline-content -->
 		</div> <!-- cd-timeline-block -->
 
@@ -84,7 +82,7 @@
 				<h2>Title of Project 2</h2>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde?</p>
 				<a href="#0" class="cd-read-more">Read more</a>
-				<span class="cd-date">Jan 18</span>
+				<span id="cd-date">Empty</span>
 			</div> <!-- cd-timeline-content -->
 		</div> <!-- cd-timeline-block -->
 
@@ -97,7 +95,7 @@
 				<h2>Title of Project 3</h2>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, obcaecati, quisquam id molestias eaque asperiores voluptatibus cupiditate error assumenda delectus odit similique earum voluptatem doloremque dolorem ipsam quae rerum quis. Odit, itaque, deserunt corporis vero ipsum nisi eius odio natus ullam provident pariatur temporibus quia eos repellat consequuntur perferendis enim amet quae quasi repudiandae sed quod veniam dolore possimus rem voluptatum eveniet eligendi quis fugiat aliquam sunt similique aut adipisci.</p>
 				<a href="#0" class="cd-read-more">Read more</a>
-				<span class="cd-date">Jan 24</span>
+				<span id="cd-date">Empty</span>
 			</div> <!-- cd-timeline-content -->
 		</div> <!-- cd-timeline-block -->
 
@@ -110,7 +108,7 @@
 				<h2>Title of Project 4</h2>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
 				<a href="#0" class="cd-read-more">Read more</a>
-				<span class="cd-date">Feb 14</span>
+			<span id="cd-date">Empty</span>
 			</div> <!-- cd-timeline-content -->
 		</div> <!-- cd-timeline-block -->
 
@@ -123,7 +121,7 @@
 				<h2>Title of Project 5</h2>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum.</p>
 				<a href="#0" class="cd-read-more">Read more</a>
-				<span class="cd-date">Feb 18</span>
+				<span id="cd-date">Empty</span>
 			</div> <!-- cd-timeline-content -->
 		</div> <!-- cd-timeline-block -->
 
@@ -135,7 +133,7 @@
 			<div class="cd-timeline-content">
 				<h2>Final Section</h2>
 				<p>This is the content of the last section</p>
-				<span class="cd-date">Feb 26</span>
+				<span id="cd-date">Feb 26</span>
 			</div> <!-- cd-timeline-content -->
 		</div> <!-- cd-timeline-block -->
 	</section> <!-- cd-timeline -->
@@ -159,6 +157,54 @@ $(function(){
     $(newcontent).removeClass('hidden');
   });
 });
+</script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+    var counter = 1;
+
+    $("#addButton").click(function () {
+
+	if(counter>9){
+            alert("Only 9 textboxes allow");
+            return false;
+	}
+
+	var newTextBoxDiv = $(document.createElement('div'))
+	     .attr("id", 'TextBoxDiv' + counter);
+
+	newTextBoxDiv.after().html('<label>Member Name#'+ counter + ' : </label>' +
+	      '<input type="text" name="members' + counter +
+	      '" id="textbox' + counter + '" value="" >');
+
+	newTextBoxDiv.appendTo("#TextBoxesGroup");
+
+
+	counter++;
+     });
+
+     $("#removeButton").click(function () {
+	if(counter==0){
+          alert("No more textbox to remove");
+          return false;
+       }
+
+	counter--;
+
+        $("#TextBoxDiv" + counter).remove();
+
+     });
+  });
+</script>
+<script type="text/javascript">
+
+	var months = ['January','February','March','April','May','June','July',
+	'August','September','October','November','December'];       
+	var tomorrow = new Date();
+	tomorrow.setTime(tomorrow.getTime() + (1000*3600*24));       
+	document.getElementById("cd-date").innerHTML = months[tomorrow.getMonth()]+""+tomorrow.getDate()+","+tomorrow.getFullYear();
 </script>
 </body>
 </html>
