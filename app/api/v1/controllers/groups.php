@@ -48,16 +48,22 @@ switch ($verb) {
         }
         break;
 
+    // Assign students to group
+    case 'assign':
+        if(isset($_POST['id']) && isset($_POST['students'])) {
+            $group_id = $_POST['id'];
+            $student_id_arr = $_POST['students'];
+
+            $data = Group::assign($group_id, $student_id_arr);
+        }
+        break;
+
     // Get details of a single group
     case 'get':
         if(isset($_GET['id'])) {
             $id = $_GET['id'];
 
             $data = Group::get($id);
-
-            if($data['sts'] == 0) {
-                $data['data']->session = null;
-            }
         }
         break;
 

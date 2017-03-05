@@ -70,6 +70,50 @@ class Group {
 
         return $data;
     }
+
+    public static function get($id) {
+        $db = Db::getInstance();
+        $req = $db->prepare('SELECT * FROM groups WHERE id = :id LIMIT 1');
+        $req->execute(array('id' => $id));
+        $group = $req->fetch();
+
+        if ($group) {
+            $data = array(
+                "sts" => 0,
+                "data" => new Group($group['id'], $group['name'], $group['status'], $group['creation_date'], $group['created_by'])
+            );
+        }
+        else {
+            $data = array(
+                "sts" => 1,
+                "msg" => "group not found"
+            );
+        }
+
+        return $data;
+    }
+
+    public static function assign($group_id, $student_id_arr) {
+        // convert string to array
+        $student_id_arr = explode(",", $student_id_arr);
+
+        $status = 1;
+
+        $db = Db::getInstance();
+
+        for($index = 0; $index < sizeof($student_id_arr); $index++) {
+
+            $req = $db->prepare('INSERT INTO group_student_assignment (group_id, student_id, status) VALUES (:group_id, :student_id, :status)');
+            $req->execute(array('group_id' => $group_id, 'student_id' => $student_id_arr[$index], 'status' => $status));
+        }
+
+        $data = array(
+            "sts" => 0,
+            "msg" => "students assigned to group"
+        );
+
+        return $data;
+    }
 }
 
 ?>
