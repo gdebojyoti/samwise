@@ -36,12 +36,12 @@ class MyAPI extends API {
         );
     }
 
-    // protected function projects($verb, $args) {
-    //     require_once "controllers/projects.php";
-    //     if (isset($data)) return $data;
-    //     else return array(
-    //         "sts" => -1,
-    //         "msg" => "Invalid request"
-    //     );
-    // }
+    protected function projects($verb, $args) {
+        require_once "controllers/projects.php";
+        if (isset($data)) return $data;
+        else return array(
+            "sts" => -1,
+            "msg" => "Invalid request"
+        );
+    }
 }
