@@ -69,7 +69,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-8 col-sm-offset-2 text">
-                            <h1><strong>BHASIC</strong>    Project Plan Workflow</h1>
+                            <h1><strong>BHASIC</strong> Project Plan Workflow</h1>
                             <div class="description">
                             	<p>
 	                            	Enter your Project details step by step and get it approved by your college professor.
@@ -110,12 +110,12 @@
 		                        	<div class="form-top">
 		                        		<div class="form-top-left">
 		                        			<h3>Step 2 / 3</h3>
-		                            		<p>Finance - Project Estimation and  </p>
+		                            		<p>Finance - Project Estimation and Financing </p>
 		                        		</div>
 		                        		<div class="form-top-right">
 		                        			<i class="fa fa-key"></i>
 		                        		</div>
-		                            </div>
+		                            </div><br>
 									<div class="form-group">
 				                    		<label class="sr-only" for="form-address">Address</label>
 				                        	<input type="text" name="duration" placeholder="Project Address" class="form-address form-control" id="form-address">
@@ -123,8 +123,9 @@
 		                            <div class="form-bottom">
 				                        <div class="form-group">
 				                        	<label class="sr-only" for="form-email">Aid Type</label>
-				                        	<select name="form-aid" class="form-email form-control" id="form-email">
-											<option value="1"> Education </option>
+				                        	<select name="form-aid" id="fund" class="form-email form-control" id="form-email">
+											
+											<option value="0"> Aid Type </option>
 											<option value="2"> Food </option>
 											<option value="3"> Clothing </option>
 											<option value="4"> Medical Utility </option>
@@ -132,7 +133,28 @@
 											</select>
 											
 				                        </div>
-				                        <div class="form-group">
+										
+										<input type="text" id="othername" name="othername" placeholder="Specify Other Aid Type..." class="form-password form-control" style="display: none; margin-bottom:12px;"/>
+										<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>   
+														<script type="text/javascript">   
+														$(document).ready(function() {   
+														$('#fund').change(function(){   
+														if($('#fund').val() === '5')   
+														   {   
+														   $('#othername').show();
+														  												   
+														   }   
+														else 
+														   {   
+														   $('#othername').hide();      
+														  
+														   }   
+														});   
+														});   
+										</script>  
+										
+								
+										 <div class="form-group">
 				                    		<label class="sr-only" for="form-duration">Duration</label>
 				                        	<input type="number" name="duration" placeholder="Duration - Number of WEEKS..." class="form-password form-control" id="form-duration">
 				                        </div>
@@ -144,7 +166,7 @@
 				                        </div>
 										  <div class="form-group">
 				                        	<label class="sr-only" for="form-email">Funding Type</label>
-				                        	<select id="form-professor" name="form-professor" class="form-email form-control"  onchange="javascript: showhide();">
+				                        	<select id="form-professor_slect" name="form-professor" class="form-email form-control"  onchange="javascript: showhide();">
 											<option value="1"> Fully Funded </option>
 											<option value="2"> Partly Funded </option>
 											<option value="3"> None </option>
@@ -152,17 +174,26 @@
 											</select>
 											
 				                        </div>
-										<script>
-											function showhide(){ 
-											
-											if(document.getElementById('form-professor').value == '3'){
-											document.getElementById('professor').required = false;
-											}
-											else{
-											document.getElementById('professor').required = true;
-											}
-											}
-										</script>
+										 <input type="text" placeholder ="How much you are contributing?" id="other" name="other" class="form-password form-control" style="display: none; margin-bottom:12px;"/>
+										 <input type="text" placeholder ="How much you are asking for?" id="other2" name="other2" class="form-password form-control" style="display: none; margin-bottom:10px;"/>
+									
+										<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>   
+														<script type="text/javascript">   
+														$(document).ready(function() {   
+														$('#form-professor_slect').change(function(){   
+														if($('#form-professor_slect').val() === '2')   
+														   {   
+														   $('#other').show();
+														   $('#other2').show();   																   
+														   }   
+														else 
+														   {   
+														   $('#other').hide();      
+														   $('#other2').hide();   
+														   }   
+														});   
+														});   
+										</script>   
 										
 										<div class="form-group">
 				                    		<label class="sr-only" for="form-duration">Professor ID</label>

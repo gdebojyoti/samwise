@@ -9,7 +9,7 @@ function register() {
 	var college = document.getElementsByName('college')[0].value;
     var email = document.getElementsByName('email')[0].value;
     var password = document.getElementsByName('password')[0].value;
-	var confirm_password = document.getElementsByName('confirm_password')[0].value;	
+	var confirm_password = document.getElementsByName('confirm_password')[0].value;
     var phone = document.getElementsByName('phone')[0].value;
     var street_address = document.getElementsByName('street_address')[0].value;
     var city = document.getElementsByName('city')[0].value;
@@ -62,7 +62,7 @@ function register() {
 
 
 function collegeRegistration() {
-    
+
 	var college = collegeDetails.college.value;
 	var email= collegeDetails.email.value;
     var phone = document.getElementsByName('phone')[0].value;
@@ -81,13 +81,13 @@ function collegeRegistration() {
         fireToast("error", "Invalid email entered");
         return false;
     }
-	
+
     $.ajax({
         method: "POST",
         url: API.base + API.version + "institutes/register",
         data: {
             name: college,
-            email: email,         
+            email: email,
             phone: phone,
             street_address: street_address,
             city: city,
@@ -105,7 +105,7 @@ function collegeRegistration() {
             else if (data.sts == 1) {
                 if (data.msg == "email already exists") fireToast("error", "Email already exists");
                 else if (data.msg == "invalid email") fireToast("error", "Invalid email entered");
-                else if (data.msg == "invalid phone number") fireToast("error", "Invalid phone number entered");                
+                else if (data.msg == "invalid phone number") fireToast("error", "Invalid phone number entered");
                 else fireToast("error", "Unknown error occurred");
             }
         }
@@ -167,6 +167,30 @@ function registerNow() {
         }
     });
 }
+
+
+function fetchCollegeList(elemId) {
+
+    $.ajax({
+        method: "GET",
+        url: API.base + API.version + "institutes/search"
+
+    }).success(function( data ) {
+        if(typeof data.sts !== 'undefined') {
+            if (data.sts === 0) {
+                console.log(data.data);
+                for(var i = 0, elm; i < data.data.length; i++) {
+                    elm = "<option value=" + data.data[i].id + ">" + data.data[i].name + "</option>";
+                    $("#" + elemId).append(elm);
+                }
+            }
+            else if (data.sts == 1) {
+               fireToast("error", "Email already exists");
+            }
+        }
+    });
+}
+
 
 
 // Create a toast notification
