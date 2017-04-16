@@ -46,15 +46,17 @@ class Project {
         return $data;
     }
 
-    public static function create($name, $group_id, $address, $category, $weeks, $amount, $funding_status, $contributing, $asking, $professor_id, $details) {
+    public static function create($name, $group_id, $address, $category, $category_other, $weeks, $amount, $funding_status, $contributing, $asking, $professor_id, $details,
+            $contact_name, $sex, $age, $occupation, $contact_address, $gps, $phone, $email) {
         $status = 1;
 
         $db = Db::getInstance();
-        $req = $db->prepare('INSERT INTO projects (name, group_id, address, category, weeks, amount, funding_status, contributing, asking, professor_id, details, status)
-                VALUES (:name, :group_id, :address, :category, :weeks, :amount, :funding_status, :contributing, :asking, :professor_id, :details, :status)');
+        $req = $db->prepare('INSERT INTO projects (name, group_id, address, category, category_other, weeks, amount, funding_status, contributing, asking, professor_id, details, status, contact_name, sex, age, occupation, contact_address, gps, phone, email)
+                VALUES (:name, :group_id, :address, :category, :category_other, :weeks, :amount, :funding_status, :contributing, :asking, :professor_id, :details, :status, :contact_name, :sex, :age, :occupation, :contact_address, :gps, :phone, :email)');
         // try {
-            $req->execute(array('name' => $name, 'group_id' => $group_id, 'address' => $address, 'category' => $category, 'weeks' => $weeks, 'amount' => $amount,
-                    'funding_status' => $funding_status, 'contributing' => $contributing, 'asking' => $asking, 'professor_id' => $professor_id, 'details' => $details, 'status' => $status));
+            $req->execute(array('name' => $name, 'group_id' => $group_id, 'address' => $address, 'category' => $category, 'category_other' => $category_other, 'weeks' => $weeks, 'amount' => $amount,
+                    'funding_status' => $funding_status, 'contributing' => $contributing, 'asking' => $asking, 'professor_id' => $professor_id, 'details' => $details, 'status' => $status.
+                    'contact_name' => $contact_name, 'sex' => $sex, 'age' => $age, 'occupation' => $occupation, 'contact_address' => $contact_address, 'gps' => $gps, 'phone' => $phone, 'email' => $email));
             $data = array(
                 "sts" => 0,
                 "msg" => "project created"
