@@ -113,8 +113,6 @@ function collegeRegistration() {
 }
 
 
-
-
 function registerNow() {
     var name = document.getElementsByName('userIDname')[0].value;
     var email = document.getElementsByName('emailId')[0].value;
@@ -191,6 +189,65 @@ function fetchCollegeList(elemId) {
     });
 }
 
+
+function submit_project() {
+	
+	var projectname = document.getElementsByName('projectname')[0].value;
+	var projectaddress = document.getElementsByName('projectaddress')[0].value;
+	var aidtype = document.getElementsByName('formaidtype')[0].value;
+    var othercategory = document.getElementsByName('othername')[0].value;
+    var duration = document.getElementsByName('duration')[0].value;
+    var projectamount = document.getElementsByName('amount')[0].value;
+	var fundingstatus = document.getElementsByName('formfunding')[0].value;
+    var contribution = document.getElementsByName('contributing')[0].value;
+	var askingamount = document.getElementsByName('asking')[0].value;
+    var professorID = document.getElementsByName('professorID')[0].value;
+    var commentsection = document.getElementsByName('comment')[0].value;
+	var name = document.getElementsByName('name')[0].value;
+	var sex = document.getElementsByName('sex')[0].value;
+	var age = document.getElementsByName('age')[0].value;
+	var occupation = document.getElementsByName('Occupation')[0].value;
+	var address = document.getElementsByName('Address')[0].value;
+	var gpscor = document.getElementsByName('ordinates')[0].value;
+	var phone = document.getElementsByName('PhoneNumber')[0].value;
+	var mail = document.getElementsByName('EmailID')[0].value;
+  
+	 $.ajax({
+        method: "POST",
+        url: API.base + API.version + "projects/create",
+        data: {
+			name:projectname,
+            address: projectaddress,
+			category:aidtype,
+            category_other: othercategory,
+            weeks: duration,
+            amount: projectamount,
+			funding_status:fundingstatus,
+            contributing: contribution,
+            asking: askingamount,
+            professor_id: professorID,
+            details: commentsection,
+			contact_name: name,
+			sex: sex,
+			age: age,
+			occupation: occupation,
+			contact_address: address,
+			gps: gpscor,
+			phone: phone,
+			email: mail,
+        }
+    }) .success(function( data ) {
+        if(typeof data.sts !== 'undefined') {
+            if (data.sts == 0) {
+				console.log(data);
+                fireToast("success", "You have successfully submitted project details!");
+            }
+            else if (data.sts == 1) {
+                fireToast("error", "Unknown error occurred");
+            }
+        }
+    });
+}
 
 
 // Create a toast notification

@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="assets/css/form-elements.css">
         <link rel="stylesheet" href="assets/css/style.css">
-
+		<script src="../js/app.js"></script>
  
     </head>
 
@@ -80,6 +80,12 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-6 col-sm-offset-3 form-box">
+						
+						
+						
+						
+						
+						<!-- FORM STARTS HERE -->
                         	
                         	<form role="form" action="" method="post" class="registration-form" name="projectFlow">
                         		
@@ -118,12 +124,13 @@
 		                            </div><br>
 									<div class="form-group">
 				                    		<label class="sr-only" for="form-address">Address</label>
-				                        	<input type="text" name="duration" placeholder="Project Address" class="form-address form-control" id="form-address">
+				                        	<input type="text" name="projectname" placeholder="Project Name" class="form-address form-control" id="project-address">
+											<input type="text" name="projectaddress" placeholder="Project Address" class="form-address form-control" id="project-address">
 				                        </div>
 		                            <div class="form-bottom">
 				                        <div class="form-group">
 				                        	<label class="sr-only" for="form-email">Aid Type</label>
-				                        	<select name="form-aid" id="fund" class="form-email form-control" id="form-email">
+				                        	<select name="formaidtype" id="fund" class="form-email form-control" id="form-email">
 											
 											<option value="0"> Aid Type </option>
 											<option value="2"> Food </option>
@@ -134,7 +141,7 @@
 											
 				                        </div>
 										
-										<input type="text" id="othername" name="othername" placeholder="Specify Other Aid Type..." class="form-password form-control" style="display: none; margin-bottom:12px;"/>
+										<input  id="othername" name="othername" placeholder="  Specify Other Aid Type..." style="display: none; width:740px;margin-bottom:12px;"/>
 										<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>   
 														<script type="text/javascript">   
 														$(document).ready(function() {   
@@ -161,12 +168,12 @@
 										
 				                        <div class="form-group">
 				                        	<label class="sr-only" for="form-repeat-amount">Amount</label>
-				                        	<input type="number" name="amount" placeholder="Enter Amount in INR..." 
-				                        				class="form-repeat-password form-control" id="form-repeat-password">
+				                        	<input type="number" name="amount" placeholder="Enter Amount in INR..." class="form-repeat-password form-control" id="form-repeat-password">
+				                        				
 				                        </div>
 										  <div class="form-group">
 				                        	<label class="sr-only" for="form-email">Funding Type</label>
-				                        	<select id="form-professor_slect" name="form-professor" class="form-email form-control"  onchange="javascript: showhide();">
+				                        	<select id="form-professor_slect" name="formfunding" class="form-email form-control">
 											<option value="1"> Fully Funded </option>
 											<option value="2"> Partly Funded </option>
 											<option value="3"> None </option>
@@ -174,34 +181,35 @@
 											</select>
 											
 				                        </div>
-										 <input type="text" placeholder ="How much you are contributing?" id="other" name="other" class="form-password form-control" style="display: none; margin-bottom:12px;"/>
-										 <input type="text" placeholder ="How much you are asking for?" id="other2" name="other2" class="form-password form-control" style="display: none; margin-bottom:10px;"/>
+										 <input type="number" placeholder ="How much you are contributing?" id="contributing" name="contributing" class="form-password form-control"   style="display: none; margin-bottom:12px;"/>
+										 <input type="number" placeholder ="How much you are asking for?" id="asking" name="asking" class="form-password form-control" style="display: none; margin-bottom:10px;"/>
 									
 										<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>   
-														<script type="text/javascript">   
+										<script type="text/javascript">   
 														$(document).ready(function() {   
 														$('#form-professor_slect').change(function(){   
 														if($('#form-professor_slect').val() === '2')   
 														   {   
-														   $('#other').show();
-														   $('#other2').show();   																   
+														   $('#contributing').show();
+														   $('#asking').show();   																   
 														   }   
 														else 
 														   {   
-														   $('#other').hide();      
-														   $('#other2').hide();   
+														   $('#contributing').hide();      
+														   $('#asking').hide();   
 														   }   
 														});   
 														});   
 										</script>   
 										
 										<div class="form-group">
-				                    		<label class="sr-only" for="form-duration">Professor ID</label>
-				                        	<input type="text"  style="display:block;" name="duration" placeholder="Professor ID" class="form-password form-control" id="professor">
+				                    		<label class="sr-only" form="form-duration">Professor ID</label>
+				                        	<input type="text"  style="display:block;" name="professorID" placeholder="Professor ID" class="form-password form-control" id="professor" required>
 				                        </div>
 										<textarea name="comment" style="width:740px; height:150px;" form="usrform">Enter Your Project Plan and details here...</textarea><br><br>
 				                        <button type="button" class="btn btn-previous">Previous</button>
 				                        <button type="button" class="btn btn-next">Next</button>
+										<div class="form-top-left">	
 				                    </div>
 			                    </fieldset>
 			                    
@@ -215,17 +223,22 @@
 		                        			<i class="fa fa-facebook"></i>
 		                        		</div>
 		                            </div>
-									
+									<br>
 									<div class="form-group">
-									
-										<input type="text" name="Name" placeholder="Name" class="form-name form-control" id="form-name">
-										<input type="text" name="Sex" placeholder="Sex" class="form-name form-control" id="form-name">
-										<input type="text" name="Age" placeholder="Age" class="form-name form-control" id="form-name">
+										
+										<input type="text" name="name" placeholder="Name" class="form-name form-control" id="form-name">
+										<select name="sex" id="fund" class="form-email form-control" id="form-email">
+											<option value="0"> Sex </option>
+											<option value="1"> Male </option>
+											<option value="2"> Female </option>
+											</option>
+										</select>
+										<input type="text" name="age" placeholder="Age" class="form-name form-control" id="form-name">
 										<input type="text" name="Occupation" placeholder="Occupation" class="form-name form-control" id="form-name">
 										<input type="text" name="Address" placeholder="Address" class="form-name form-control" id="form-name">
-										<input type="text" name="GPS Co-ordinates" placeholder="GPS Co-ordinates" class="form-name form-control" id="form-name">
-										<input type="number" name="Phone Number" placeholder="Phone Number" class="form-name form-control" id="form-name">
-										<input type="text" name="Email ID" placeholder="Email ID" class="form-name form-control" id="form-name">
+										<input type="text" name="ordinates" placeholder="GPS Co-ordinates" class="form-name form-control" id="form-name">
+										<input type="number" name="PhoneNumber" placeholder="  Phone Number" class="form-name form-control" id="form-name">
+										<input type="text" name="EmailID" placeholder="Email ID" class="form-name form-control" id="form-name">
 										
 				                    </div>
 									
@@ -241,6 +254,11 @@
 		                    
 		                    </form>
 		                    
+							
+							<!-- FORM ENDS HERE -->
+							
+							
+							
                         </div>
                     </div>
                 </div>
@@ -268,6 +286,7 @@
         <script src="assets/js/jquery.backstretch.min.js"></script>
         <script src="assets/js/retina-1.1.0.min.js"></script>
         <script src="assets/js/scripts.js"></script>
+		<script src="../js/app.js"></script>
       
     </body>
 
