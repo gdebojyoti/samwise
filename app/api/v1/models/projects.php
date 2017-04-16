@@ -55,7 +55,7 @@ class Project {
                 VALUES (:name, :group_id, :address, :category, :category_other, :weeks, :amount, :funding_status, :contributing, :asking, :professor_id, :details, :status, :contact_name, :sex, :age, :occupation, :contact_address, :gps, :phone, :email)');
         // try {
             $req->execute(array('name' => $name, 'group_id' => $group_id, 'address' => $address, 'category' => $category, 'category_other' => $category_other, 'weeks' => $weeks, 'amount' => $amount,
-                    'funding_status' => $funding_status, 'contributing' => $contributing, 'asking' => $asking, 'professor_id' => $professor_id, 'details' => $details, 'status' => $status.
+                    'funding_status' => $funding_status, 'contributing' => $contributing, 'asking' => $asking, 'professor_id' => $professor_id, 'details' => $details, 'status' => $status,
                     'contact_name' => $contact_name, 'sex' => $sex, 'age' => $age, 'occupation' => $occupation, 'contact_address' => $contact_address, 'gps' => $gps, 'phone' => $phone, 'email' => $email));
             $data = array(
                 "sts" => 0,
