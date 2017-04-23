@@ -18,6 +18,15 @@ class MyAPI extends API {
         );
     }
 
+    protected function professors($verb, $args) {
+        require_once "controllers/professors.php";
+        if (isset($data)) return $data;
+        else return array(
+            "sts" => -1,
+            "msg" => "Invalid request"
+        );
+    }
+
     protected function institutes($verb, $args) {
         require_once "controllers/institutes.php";
         if (isset($data)) return $data;
