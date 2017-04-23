@@ -8,6 +8,17 @@ require_once 'models/projects.php';
 $sts = 0;
 
 switch ($verb) {
+    // Search for project
+    case 'search':
+        $name = isset($_GET['name']) ? trim($_GET['name']) : "";
+        $query = array(
+            "name" => $name
+        );
+
+        $data = Project::search($query);
+
+        break;
+
     // Create new project
     case 'create':
         if(isset($_POST['name']) && trim($_POST['name']) != "") {
@@ -38,6 +49,17 @@ switch ($verb) {
             $data = Project::create($name, $group_id, $address, $category, $category_other, $weeks, $amount, $funding_status, $contributing, $asking, $professor_id, $details,
                     $contact_name, $sex, $age, $occupation, $contact_address, $gps, $phone, $email);
         }
+        break;
+
+    // Search for project
+    case 'search':
+        $name = isset($_GET['name']) ? trim($_GET['name']) : "";
+        $query = array(
+            "name" => $name
+        );
+
+        $data = Project::search($query);
+
         break;
 
     // Update project details
