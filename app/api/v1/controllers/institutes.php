@@ -10,27 +10,16 @@ $sts = 0;
 switch ($verb) {
     // Search for institute
     case 'search':
-        if(isset($_GET['name']) && trim($_GET['name']) != "") {
-            $name = $_GET['name'];
+        $name = isset($_GET['name']) ? trim($_GET['name']) : "";
+        $status = isset($_GET['status']) ? trim($_GET['status']) : 0;
 
-            $query = array(
-                "name" => $name
-            );
+        $query = array(
+            "name" => $name,
+            "status" => $status
+        );
 
-            $data = Institute::search($query);
-        }
-        // get list of all institutes if no "name" is supplied
-        else {
-            // $data = array(
-            //     "sts" => 1,
-            //     "msg" => "name required"
-            // );
-            $query = array(
-                "name" => ""
-            );
+        $data = Institute::search($query);
 
-            $data = Institute::search($query);
-        }
         break;
 
     // Add new institute
@@ -60,10 +49,11 @@ switch ($verb) {
         if(isset($_POST['name'])) {
             $name = $_POST['name'];
             $type = $_POST['type'];
-            $phone = $_POST['phone'];
-            $email = $_POST['email'];
-            $website = $_POST['website'];
             $country = $_POST['country'];
+
+            $phone = isset($_POST['phone']) ? $_POST['phone'] : "";
+            $email = isset($_POST['email']) ? $_POST['email'] : "";
+            $website = isset($_POST['website']) ? $_POST['website'] : "";
 
             $street_address = isset($_POST['street_address']) ? $_POST['street_address'] : "";
             $city = isset($_POST['city']) ? $_POST['city'] : "";

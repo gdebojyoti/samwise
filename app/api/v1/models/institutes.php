@@ -26,16 +26,26 @@ class Institute {
         $list = [];
         $db = Db::getInstance();
 
+        $query_string = "";
+        $query_array = array();
+
         // get matching institutes if "name" is available
         if(strlen($query['name']) > 0) {
-            $req = $db->prepare('SELECT * FROM institutes WHERE name LIKE :name');
+            $query_string = "name LIKE :name";
+            $query_array['name'] = "%" . $query['name'] . "%";
         }
-        // get list of all institutes if no "name" is supplied
-        else {
-            $req = $db->prepare('SELECT * FROM institutes');
+        // match institutes by "status"
+        if($query['status'] > 0) {
+            $query_string_append = "status = :status";
+            $query_string = strlen($query_string) > 0 ? $query_string . " AND " . $query_string_append : $query_string_append;
+            $query_array['status'] = $query['status'];
         }
 
-        $req->execute(array('name' => "%" . $query['name'] . "%"));
+        $query_string = strlen($query_string) > 0 ? " WHERE " . $query_string : $query_string;
+
+        $req = $db->prepare('SELECT * FROM institutes' . $query_string);
+
+        $req->execute($query_array);
 
         foreach($req->fetchAll() as $inst) {
             $list[] = new Institute($inst['id'], $inst['name'], $inst['type'], $inst['phone'], $inst['email'], $inst['website'],
