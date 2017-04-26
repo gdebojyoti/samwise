@@ -96,6 +96,34 @@ class Project {
         return $data;
     }
 
+    public static function update($id, $name, $status) {
+        $db = Db::getInstance();
+        $req = $db->prepare('UPDATE projects SET status = :status WHERE id = :id LIMIT 1');
+        $req->execute(array('status' => $status, 'id' => $id));
+        $rows_affected = $req->rowCount();
+
+        if ($rows_affected == 1) {
+            $data = array(
+                "sts" => 0,
+                "msg" => "project updated"
+            );
+        }
+        else if ($rows_affected == 0) {
+            $data = array(
+                "sts" => 1,
+                "msg" => "no changes made"
+            );
+        }
+        else {
+            $data = array(
+                "sts" => 1,
+                "msg" => "unknown error"
+            );
+        }
+
+        return $data;
+    }
+
     public static function assign($project_id, $student_id_arr) {
         // convert string to array
         $student_id_arr = explode(",", $student_id_arr);

@@ -64,31 +64,12 @@ switch ($verb) {
 
     // Update project details
     case 'update':
-        if(isset($_POST['name'])) {
-            $name = $_POST['name'];
+        if(isset($_GET['id'])) {
+            $id = $_GET['id'];
+            // $name = isset($_GET['name']) ? trim($_GET['name']) : "";
+            $status = isset($_GET['status']) ? trim($_GET['status']) : 1;
 
-            $rows_affected = Project::update($name);
-
-            if ($rows_affected == 1) {
-                $data = array(
-                    "sts" => 0,
-                    "msg" => "project updated"
-                );
-            }
-            else if ($rows_affected == 0) {
-                $data = array(
-                    "sts" => 1,
-                    "msg" => "no changes made"
-                );
-            }
-            else {
-                $data = array(
-                    "sts" => 1,
-                    "msg" => "unknown error"
-                );
-            }
-
-            $data['boo'] = $rows_affected;
+            $data = Project::update($id, $name, $status);
         }
         break;
 
