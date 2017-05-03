@@ -61,13 +61,13 @@ class Professor {
             return $data;
         }
 
-        if(strlen($phone) != 10) {
-            $data = array(
-                "sts" => 1,
-                "msg" => "invalid phone number"
-            );
-            return $data;
-        }
+        // if(strlen($phone) != 10) {
+        //     $data = array(
+        //         "sts" => 1,
+        //         "msg" => "invalid phone number"
+        //     );
+        //     return $data;
+        // }
 
         $password = md5($password);
         $timestamp = date("mdHis");
