@@ -190,6 +190,73 @@ function fetchCollegeList(elemId) {
 }
 
 
+function fetchProjectList(elemId) {
+
+    $.ajax({
+        method: "GET",
+        url: API.base + API.version + "projects/search"
+
+    }).success(function( data ) {
+        if(typeof data.sts !== 'undefined') {
+            if (data.sts === 0) {
+                console.log(data.data);
+                for(var i = 0, elm; i < data.data.length; i++) {					
+				  var elm = "<tr id ='projectitem" + data.data[i].id + "'>";
+			      elm += '<td>' + data.data[i].name + '</td>';								  
+				  elm += '<td>' + data.data[i].name + '</td>';
+			      elm += '<td>' + data.data[i].name + '</td>';
+				  elm += '<td><span class="label label-info label-mini">Pending</span></td>';
+				  elm += '<td>';
+				  elm += '<button class="btn btn-success btn-xs" onclick="approve('+ data.data[i].id +')"><i class="fa fa-check tooltips" data-placement="right" data-original-title="Approve"></i></button>';
+			      elm += '<button class="btn btn-primary btn-xs" onclick="reject()"><i class="fa fa-pencil tooltips" data-placement="right" data-original-title="Edit"></i></button>';
+			      elm += '<button class="btn btn-danger btn-xs" onclick="delete()"><i class="fa fa-trash-o tooltips" data-placement="right" data-original-title="Delete"></i></button>';
+				  elm += '</td>';
+				  elm += '</tr>';
+                  //elm = "<tbody>" + data.data[i].name + "</tbody>";
+                  $("#" + elemId).append(elm);
+                }
+            }
+            else if (data.sts == 1) {
+               fireToast("error", "Project List Not Found");
+            }
+        }
+    });
+}
+
+
+function submitRegistration() {
+	
+	var emailId = document.getElementsByName('email')[0].value;
+	var passwd = document.getElementsByName('pass')[0].value;
+	var confmpasswd = document.getElementsByName('confmPass')[0].value;
+	var instId = document.getElementsByName('InstID')[0].value;
+    
+  
+	 $.ajax({
+        method: "POST",
+        url: API.base + API.version + "professors/register",
+        data: {
+			email: emailId,
+            password:passwd,
+			confirm_password:confmpasswd,
+            institute_id:instId,
+        }
+    }) .success(function( data ) {
+        if(typeof data.sts !== 'undefined') {
+            if (data.sts == 0) {
+				console.log(data);
+                fireToast("success", "Registration Successful!");
+            }
+            else if (data.sts == 1) {
+                fireToast("error", data.msg || "Form Error");
+				
+            }
+        }
+    });
+}
+
+
+
 function submit_project() {
 	
 	var projectname = document.getElementsByName('projectname')[0].value;
