@@ -4,12 +4,12 @@ class Project {
     public $id;
     public $name;
 
-    public function __construct($id, $name, $status, $creation_date, $created_by) {
+    public function __construct($id, $name, $details, $amount, $status) {
         $this->id = $id;
         $this->name = $name;
+        $this->details = $details;
+        $this->amount = $amount;
         $this->status = $status;
-        $this->creation_date = $creation_date;
-        $this->created_by = $created_by;
     }
 
     public static function search($query) {
@@ -27,8 +27,8 @@ class Project {
 
         $req->execute(array('name' => "%" . $query['name'] . "%"));
 
-        foreach($req->fetchAll() as $inst) {
-            $list[] = new Project($inst['id'], $inst['name'], $inst['status'], $inst['creation_date'], $inst['created_by']);
+        foreach($req->fetchAll() as $project) {
+            $list[] = new Project($project['id'], $project['name'], $project['details'], $project['amount'], $project['status']);
         }
 
         if(sizeof($list) > 0) {
@@ -83,7 +83,7 @@ class Project {
         if ($project) {
             $data = array(
                 "sts" => 0,
-                "data" => new Project($project['id'], $project['name'], $project['status'], $project['creation_date'], $project['created_by'])
+                "data" => new Project($project['id'], $project['name'], $project['details'], $project['amount'], $project['status'])
             );
         }
         else {
