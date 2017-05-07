@@ -1,15 +1,32 @@
 <?php
 
+/**
+  * "status"
+  * 1: Pending
+  * 2: Approved
+  * 3: Rejected
+  *
+  * "funding_type"
+  * 1: fully funded
+  * 2: partially funded
+  * 3: no funds
+  *
+  * "funding_status"
+  * 0: none
+  * 1: funded
+  **/
+
 class Project {
     public $id;
     public $name;
 
-    public function __construct($id, $name, $details, $amount, $status) {
+    public function __construct($id, $name, $details, $amount, $status, $funding_status) {
         $this->id = $id;
         $this->name = $name;
         $this->details = $details;
         $this->amount = $amount;
         $this->status = $status;
+        $this->funding_status = $funding_status;
     }
 
     public static function search($query) {
@@ -28,7 +45,7 @@ class Project {
         $req->execute(array('name' => "%" . $query['name'] . "%"));
 
         foreach($req->fetchAll() as $project) {
-            $list[] = new Project($project['id'], $project['name'], $project['details'], $project['amount'], $project['status']);
+            $list[] = new Project($project['id'], $project['name'], $project['details'], $project['amount'], $project['status'], $project['funding_status']);
         }
 
         if(sizeof($list) > 0) {
@@ -46,16 +63,16 @@ class Project {
         return $data;
     }
 
-    public static function create($name, $group_id, $address, $category, $category_other, $weeks, $amount, $funding_status, $contributing, $asking, $professor_id, $details,
+    public static function create($name, $group_id, $address, $category, $category_other, $weeks, $amount, $funding_type, $contributing, $asking, $professor_id, $details,
             $contact_name, $sex, $age, $occupation, $contact_address, $gps, $phone, $email) {
         $status = 1; // status = "pending"
 
         $db = Db::getInstance();
-        $req = $db->prepare('INSERT INTO projects (name, group_id, address, category, category_other, weeks, amount, funding_status, contributing, asking, professor_id, details, status, contact_name, sex, age, occupation, contact_address, gps, phone, email)
-                VALUES (:name, :group_id, :address, :category, :category_other, :weeks, :amount, :funding_status, :contributing, :asking, :professor_id, :details, :status, :contact_name, :sex, :age, :occupation, :contact_address, :gps, :phone, :email)');
+        $req = $db->prepare('INSERT INTO projects (name, group_id, address, category, category_other, weeks, amount, funding_type, contributing, asking, professor_id, details, status, contact_name, sex, age, occupation, contact_address, gps, phone, email)
+                VALUES (:name, :group_id, :address, :category, :category_other, :weeks, :amount, :funding_type, :contributing, :asking, :professor_id, :details, :status, :contact_name, :sex, :age, :occupation, :contact_address, :gps, :phone, :email)');
         // try {
             $req->execute(array('name' => $name, 'group_id' => $group_id, 'address' => $address, 'category' => $category, 'category_other' => $category_other, 'weeks' => $weeks, 'amount' => $amount,
-                    'funding_status' => $funding_status, 'contributing' => $contributing, 'asking' => $asking, 'professor_id' => $professor_id, 'details' => $details, 'status' => $status,
+                    'funding_type' => $funding_type, 'contributing' => $contributing, 'asking' => $asking, 'professor_id' => $professor_id, 'details' => $details, 'status' => $status,
                     'contact_name' => $contact_name, 'sex' => $sex, 'age' => $age, 'occupation' => $occupation, 'contact_address' => $contact_address, 'gps' => $gps, 'phone' => $phone, 'email' => $email));
             $data = array(
                 "sts" => 0,
@@ -83,7 +100,7 @@ class Project {
         if ($project) {
             $data = array(
                 "sts" => 0,
-                "data" => new Project($project['id'], $project['name'], $project['details'], $project['amount'], $project['status'])
+                "data" => new Project($project['id'], $project['name'], $project['details'], $project['amount'], $project['status'], $project['funding_status'])
             );
         }
         else {
