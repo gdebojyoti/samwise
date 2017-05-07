@@ -64,12 +64,11 @@ switch ($verb) {
 
     // Update project details
     case 'update':
-        if(isset($_GET['id'])) {
-            $id = $_GET['id'];
-            // $name = isset($_GET['name']) ? trim($_GET['name']) : "";
-            $status = isset($_GET['status']) ? trim($_GET['status']) : 1;
+        if(isset($_POST['id'])) {
+            $id = $_POST['id'];
+            $status = isset($_POST['status']) ? trim($_POST['status']) : 1;
 
-            $data = Project::update($id, $name, $status);
+            $data = Project::update($id, $status);
         }
         break;
 
@@ -89,6 +88,15 @@ switch ($verb) {
             $id = $_GET['id'];
 
             $data = Project::get($id);
+        }
+        break;
+
+    // Delete project
+    case 'delete':
+        if(isset($_POST['id'])) {
+            $id = $_POST['id'];
+
+            $data = Project::delete($id);
         }
         break;
 

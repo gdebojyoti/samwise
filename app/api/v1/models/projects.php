@@ -48,7 +48,7 @@ class Project {
 
     public static function create($name, $group_id, $address, $category, $category_other, $weeks, $amount, $funding_status, $contributing, $asking, $professor_id, $details,
             $contact_name, $sex, $age, $occupation, $contact_address, $gps, $phone, $email) {
-        $status = 1;
+        $status = 1; // status = "pending"
 
         $db = Db::getInstance();
         $req = $db->prepare('INSERT INTO projects (name, group_id, address, category, category_other, weeks, amount, funding_status, contributing, asking, professor_id, details, status, contact_name, sex, age, occupation, contact_address, gps, phone, email)
@@ -96,7 +96,7 @@ class Project {
         return $data;
     }
 
-    public static function update($id, $name, $status) {
+    public static function update($id, $status) {
         $db = Db::getInstance();
         $req = $db->prepare('UPDATE projects SET status = :status WHERE id = :id LIMIT 1');
         $req->execute(array('status' => $status, 'id' => $id));
@@ -120,6 +120,18 @@ class Project {
                 "msg" => "unknown error"
             );
         }
+
+        return $data;
+    }
+
+    public static function delete($id) {
+        $db = Db::getInstance();
+        $req = $db->prepare('DELETE FROM projects WHERE id = :id');
+        $req->execute(array('id' => $id));
+        $data = array(
+            "sts" => 0,
+            "msg" => "project deleted"
+        );
 
         return $data;
     }
