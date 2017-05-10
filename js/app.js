@@ -4,20 +4,18 @@ var API = {
     version: "v1/"
 }
 
-function register() {
+function studentRegistration() {
     var name = document.getElementsByName('name')[0].value;
-	var college = document.getElementsByName('college')[0].value;
-    var email = document.getElementsByName('email')[0].value;
+	var college = document.getElementsByName('institute_id')[0].value;
     var password = document.getElementsByName('password')[0].value;
 	var confirm_password = document.getElementsByName('confirm_password')[0].value;
+	var dateofbirth = document.getElementsByName('dob')[0].value;
+	var email = document.getElementsByName('email')[0].value;
+	var city = document.getElementsByName('city')[0].value;
     var phone = document.getElementsByName('phone')[0].value;
-    var street_address = document.getElementsByName('street_address')[0].value;
-    var city = document.getElementsByName('city')[0].value;
-    var state = document.getElementsByName('state')[0].value;
-    var pin = document.getElementsByName('pin')[0].value;
-    var country = document.getElementsByName('country')[0].value;
 
-    if (!name || !college || !email || !phone) {
+
+    if (!name || !email || !phone) {
         fireToast("error", "Please Fill the mandatory fields");
         return false;
     }
@@ -36,17 +34,14 @@ function register() {
             email: email,
             password: password,
 			confirm_password:confirm_password,
-            phone: phone,
-            street_address: street_address,
+			dob:dateofbirth,  
             city: city,
-            state: state,
-            pin: pin,
-            country: country,
-            institute_id: 1,
+			phone:phone,                                                                                                                                        
         }
     }) .success(function( data ) {
         if(typeof data.sts !== 'undefined') {
             if (data.sts == 0) {
+				 console.log(data.data);
                 fireToast("success", "You have successfully registered with us!");
             }
             else if (data.sts == 1) {
@@ -111,6 +106,7 @@ function collegeRegistration() {
         }
     });
 }
+
 
 
 function registerNow() {
@@ -189,8 +185,30 @@ function fetchCollegeList(elemId) {
     });
 }
 
+function fetchCollegeListVolunteer(collegeDetails) {
 
-function fetchProjectList(elemId) {
+    $.ajax({
+        method: "GET",
+        url: API.base + API.version + "institutes/search"
+
+    }).success(function( data ) {
+        if(typeof data.sts !== 'undefined') {
+            if (data.sts === 0) {
+                console.log(data.data);
+                for(var i = 0, elm; i < data.data.length; i++) {
+                    elm = "<option value=" + data.data[i].id + ">" + data.data[i].name + "</option>";
+                    $("#" + collegeDetails).append(elm);
+                }
+            }
+            else if (data.sts == 1) {
+               fireToast("error", "Email already exists");
+            }
+        }
+    });
+}
+
+
+function projectlistAdmin(projectsAdmin) {
 
     $.ajax({
         method: "GET",
@@ -205,15 +223,16 @@ function fetchProjectList(elemId) {
 			      elm += '<td>' + data.data[i].name + '</td>';								  
 				  elm += '<td>' + data.data[i].name + '</td>';
 			      elm += '<td>' + data.data[i].name + '</td>';
-				  elm += '<td><span class="label label-info label-mini">Pending</span></td>';
+				  elm += '<td><span class="label label-info label-mini" id="status">INR</span></td>';
 				  elm += '<td>';
-				  elm += '<button class="btn btn-success btn-xs" onclick="approve('+ data.data[i].id +')"><i class="fa fa-check tooltips" data-placement="right" data-original-title="Approve"></i></button>';
-			      elm += '<button class="btn btn-primary btn-xs" onclick="reject()"><i class="fa fa-pencil tooltips" data-placement="right" data-original-title="Edit"></i></button>';
-			      elm += '<button class="btn btn-danger btn-xs" onclick="delete()"><i class="fa fa-trash-o tooltips" data-placement="right" data-original-title="Delete"></i></button>';
+				  elm += '<button class="btn btn-success btn-xs" id="approvebtn" method ="post" onclick="approve('+ data.data[i].id +')"><i class="fa fa-check tooltips" data-placement="right" data-original-title="Approve"></i></button>';
+			      elm += '<button class="btn btn-primary btn-xs" id="rejectbtn" method ="post" onclick="reject('+ data.data[i].id +')"><i class="fa fa-pencil tooltips" data-placement="right" data-original-title="Edit"></i></button>';
+			      elm += '<button class="btn btn-danger btn-xs" id="deletebtn" method ="post" onclick="deleteProj('+ data.data[i].id +')"><i class="fa fa-trash-o tooltips" data-placement="right" data-original-title="Delete"></i></button>';
 				  elm += '</td>';
 				  elm += '</tr>';
                   //elm = "<tbody>" + data.data[i].name + "</tbody>";
-                  $("#" + elemId).append(elm);
+                  $("#" + projectsAdmin).append(elm);
+				  
                 }
             }
             else if (data.sts == 1) {
@@ -222,6 +241,114 @@ function fetchProjectList(elemId) {
         }
     });
 }
+
+
+function groupnameList(groupNames) {
+
+    $.ajax({
+        method: "GET",
+		//change for vieiwing group names
+        url: API.base + API.version + "projects/search"
+
+    }).success(function( data ) {
+        if(typeof data.sts !== 'undefined') {
+            if (data.sts === 0) {
+                console.log(data.data);
+                for(var i = 0, elm; i < data.data.length; i++) {					
+				  var elm = "<tr id ='projectitem" + data.data[i].id + "'>";
+			      elm += '<td>' + data.data[i].name + '</td>';								  
+				  elm += '<td>';
+				  elm += '</td>';
+				  elm += '</tr>';
+                  //elm = "<tbody>" + data.data[i].name + "</tbody>";
+                  $("#" + groupNames).append(elm);
+				  
+                }
+            }
+            else if (data.sts == 1) {
+               fireToast("error", "Project List Not Found");
+            }
+        }
+    });
+}
+
+function fetchProjectList(projectlist) {
+
+    $.ajax({
+        method: "GET",
+        url: API.base + API.version + "projects/search"
+
+    }).success(function( data ) {
+        if(typeof data.sts !== 'undefined') {
+            if (data.sts === 0) {
+                console.log(data.data);
+                for(var i = 0, elm; i < data.data.length; i++) {					
+				  var elm = "<tr id ='projectitem" + data.data[i].id + "'>";
+			      elm += '<td>' + data.data[i].name + '</td>';								  
+				  elm += '<td>' + data.data[i].name + '</td>';
+			      elm += '<td>' + data.data[i].name + '</td>';
+				  elm += '<td><span class="label label-info label-mini" id="status">Pending</span></td>';
+				  elm += '<td>';
+				  elm += '<button class="btn btn-success btn-xs" id="approvebtn" method ="post" onclick="approve('+ data.data[i].id +')"><i class="fa fa-check tooltips" data-placement="right" data-original-title="Approve"></i></button>';
+			      elm += '<button class="btn btn-primary btn-xs" id="rejectbtn" method ="post" onclick="reject('+ data.data[i].id +')"><i class="fa fa-pencil tooltips" data-placement="right" data-original-title="Edit"></i></button>';
+			      elm += '<button class="btn btn-danger btn-xs" id="deletebtn" method ="post" onclick="deleteProj('+ data.data[i].id +')"><i class="fa fa-trash-o tooltips" data-placement="right" data-original-title="Delete"></i></button>';
+				  elm += '</td>';
+				  elm += '</tr>';
+                  //elm = "<tbody>" + data.data[i].name + "</tbody>";
+                  $("#" + projectlist).append(elm);
+				  
+                }
+            }
+            else if (data.sts == 1) {
+               fireToast("error", "Project List Not Found");
+            }
+        }
+    });
+}
+
+
+function approve(id)
+	{
+	$.ajax({
+	method: "POST",
+	url: API.base + API.version + "projects/update"
+	})
+	  $(".btn-success").on("click", function () {
+		$("#projectitem"+id + " #status").text("approved");
+		$("#projectitem"+id + " #status").attr('class', 'label label-success label-mini'); 
+	});
+	
+}
+
+function reject(id)
+	{
+	  $.ajax({
+	  method: "POST",
+	  url: API.base + API.version + "projects/update"
+	})  
+
+	  $(".btn-primary").on("click", function () {
+		$("#projectitem"+id + " #status").text("rejected");
+		$("#projectitem"+id + " #status").attr('class', 'label label-warning label-mini');
+	  
+	});
+	
+}
+
+function deleteProj(id)
+	{
+	  $.ajax({
+	  method: "POST",
+	  url: API.base + API.version + "projects/delete"
+	})
+	  $(".btn-danger").on("click", function () {
+
+		$("#projectitem"+id + " #status").text("deleted");
+		$("#projectitem"+id + " #status").attr('class', 'label label-danger label-mini');
+	});
+	
+}
+
 
 
 function submitRegistration() {
@@ -246,6 +373,34 @@ function submitRegistration() {
             if (data.sts == 0) {
 				console.log(data);
                 fireToast("success", "Registration Successful!");
+				$(location).attr('href', 'index.html')
+            }
+            else if (data.sts == 1) {
+                fireToast("error", data.msg || "Form Error");
+				
+            }
+        }
+    });
+}
+
+function login() {
+	
+	var emailId = document.getElementsByName('emailId')[0].value;
+	var passwd = document.getElementsByName('pass')[0].value;
+   
+   $.ajax({
+        method: "POST",
+        url: API.base + API.version + "professors/login",
+        data: {
+			email: emailId,
+            password:passwd,
+        }
+    }) .success(function( data ) {
+        if(typeof data.sts !== 'undefined') {
+            if (data.sts == 0) {
+				console.log(data);
+                fireToast("success", "Login Successful!");
+				$(location).attr('href', 'professor.html')
             }
             else if (data.sts == 1) {
                 fireToast("error", data.msg || "Form Error");

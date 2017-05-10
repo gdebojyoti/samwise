@@ -33,36 +33,9 @@
 				  
 				</tr>
 			  </thead>
-			  <tbody>
-				<tr>
-				  <td>
-					<strong class="group_mem">Don&#8217;t Make Me Think</strong>
-					
-				  </td>
-				 
-				</tr>
-				<tr>
-				  <td>
-					<strong class="group_mem">A Project Guide to UX Design</strong>
-					
-				  </td>
-				   </td>
-				</tr>
-				<tr>
-				  <td>
-					<strong class="group_mem">Introducing HTML5</strong>
-					
-				  </td>
-				  
-				</tr>
-				<tr>
-				  <td>
-					<strong class="group_mem">Bulletproof Web Design</strong>
-					
-				  </td>
-				  
-				</tr>
-			  </tbody>
+			  <tbody id ="groupNames">                          
+							  
+              </tbody>
 		</table>
 	  
 	  <br>
@@ -248,5 +221,12 @@ $(document).ready(function(){
 	tomorrow.setTime(tomorrow.getTime() + (1000*3600*24));       
 	document.getElementById("cd-date").innerHTML = months[tomorrow.getMonth()]+""+tomorrow.getDate()+","+tomorrow.getFullYear();
 </script>
+<script src="../js/app.js"></script>
+<script>
+		$(document).ready(function () {
+		groupnameList("groupNames");
+		});
+	
+	 </script>
 </body>
 </html>

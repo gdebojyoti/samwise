@@ -5,15 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Admin">
-    <meta name="keyword" content="Admin Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>Admin Registration</title>
+    <title>Admin Login</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <!--external css-->
     <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-	<script src="../js/app.js"></script>
         
     <!-- Custom styles for this template -->
     <link href="assets/css/style.css" rel="stylesheet">
@@ -31,24 +30,22 @@
 	  <div id="login-page">
 	  	<div class="container">
 	  	
-		      <form class="form-login" onsubmit ="submitRegistration(); return false">
-		        <h2 class="form-login-heading">Register Below</h2>
+		      <form class="form-login" onsubmit ="login(); return false">
+		        <h2 class="form-login-heading">sign in now</h2>
 		        <div class="login-wrap">
-		            <input type="text" class="form-control" name ="email" placeholder="Email Id" required autofocus>
+		            <input type="text" class="form-control" name ="emailId" placeholder="Email ID" autofocus>
 		            <br>
-					<input type="password" class="form-control" name ="pass" placeholder="Password" >
-		            <br>
-					<input type="password" class="form-control" name ="confmPass" placeholder="Confirm Password" >
-					<br>
-		            <input type="text" class="form-control" name="InstID" placeholder="Institute ID">
-		            <br>
+		            <input type="password" class="form-control" name="pass" placeholder="Password">
+		            <label class="checkbox">
 		                <span class="pull-right">
-		                    <a data-toggle="modal" href="login.html#myModal"> Forgot Password?</a>		
-		                </span>
-					<br>
-		            <button class="btn btn-theme btn-block" type ="submit">Register</button>		        
-		            </div
+		                    <a data-toggle="modal" href="login.html#myModal"> Forgot Password?</a>
 		
+		                </span>
+		            </label>
+		            <button class="btn btn-theme btn-block" type ="submit"><i class="fa fa-lock"></i> SIGN IN</button>
+		            <hr>
+		            <a class="btn btn-theme btn-block" href="register.html">NOT REGISTERED? REGISTER NOW!</a>
+		            		
 		        </div>
 		
 		          <!-- Modal -->
@@ -79,10 +76,10 @@
 	  </div>
 
     <!-- js placed at the end of the document so the pages load faster -->
-    <script src="assets/js/jquery.js"></script>
+   
+	<script src="assets/js/jquery.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
 	<script src="../js/app.js"></script>
-
     <!--BACKSTRETCH-->
     <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
     <script type="text/javascript" src="assets/js/jquery.backstretch.min.js"></script>

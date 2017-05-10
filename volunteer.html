@@ -23,6 +23,7 @@
 <link href="css/custom.css" rel="stylesheet" type="text/css">
 
 <script src="js/modernizr.js"></script>
+<script src="js/app.js"></script>
 </head>
 <body class="home">
 
@@ -51,7 +52,7 @@
 					<!-- Menu Bar -->		
 						<ul class="sf-menu dd-menu pull-right" role="menu">			
 							<!--<a href="#"  class="btn btn-primary btn-outline" data-toggle="modal" data-target="#DonateModalRegister">Register</a>-->
-							<a href="#" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#SignIn">Sign In</a>					
+										
 							<li><a href="index.html">Home</a></li>
 							<li><a href="#national">National Statistics</a></li>
 							<li><a href="#projects">Projects</a></li> 
@@ -191,29 +192,34 @@
                     	<div class="well widget widget_volunteer_form">
                         	<h3>Register as a student</h3>
 							<p class="small">Enter your details and register using your college name</p>
-                            <form method="post" action="upload.php">
+                            <form class="student-form" name="studentDetails">
                             	<label>Name</label>
                             	<input type="text" class="form-control" name="name">
 								<label>CollegeName</label>
-								<select name = "collegedetails">
-								<option value="College Name">Choose Your College / University</option>
+								
+								<select id="collegeDetails" name="institute_id">
+									<option value="CollegeName" name ="collegeName" selected="selected">Choose Your College / University</option>
                             	</select><br><br>
+								<label>Password</label>
+                            	<input type="password" class="form-control" name="password">
+								<label>Confirm Password</label>
+                            	<input type="password" class="form-control" name="confirm_password">
 								<label>Date Of Birth</label>
-                            	<input type="dob" class="form-control" name="dob">
+                            	<input type="dob" class="form-control" name="dob" placeholder="MM/DD/YY">
                             	<label>Email</label>
                             	<input type="email" class="form-control" name="email">
-                            	<label>Address</label>
-                            	<input type="text" class="form-control" name="address">
+                            	<label>City</label>
+                            	<input type="text" class="form-control" name="city">
 								<label>Phone No:</label>
-                            	<input type="phone" class="form-control" name="phone">                         
+                            	<input type="phone" class="form-control" name="phone" placeholder="10 Digit Number">                         
 								<label>College ID/Govt ID Proof:</label>
                                 	<input type="file" name="fileToUpload" id="fileToUpload">
 									<input type="submit" value="Upload Image" name="submit">
-									<div class="spacer-10"></div>									
-									
-                               	</div>
-                                <input type="submit" class="btn btn-primary" value="Submit" align="right">
 									<div class="spacer-10"></div>
+									<div class="spacer-10"></div>									
+								<button type="button" class="btn btn-primary" method="post" onclick="studentRegistration()">Submit</button>
+                               	</div>                         
+									
                             </form>
                             
                         </div>
@@ -256,7 +262,12 @@
 <script src="js/init.js"></script> <!-- All Scripts -->
 <script src="vendor/flexslider/js/jquery.flexslider.js"></script> <!-- FlexSlider -->
 <script src="js/circle-progress.js"></script> <!-- Circle Progress Bars -->
-
+<script src="js/app.js"></script>
+<script>
+$(document).ready(function () {
+	fetchCollegeListVolunteer("collegeDetails");
+});
+</script>
 
 </body>
 
