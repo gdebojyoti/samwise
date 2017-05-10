@@ -93,12 +93,10 @@ class Student {
                 list($dd,$mm,$yy) = explode('/', $dob);
                 if (!checkdate($mm,$dd,$yy)) {
                     $error = true;
-                } else {
-                    $error = false;
                 }
             }
 
-            if(!$error) {
+            if($error == true) {
                 $data = array(
                     "sts" => 1,
                     "msg" => "invalid date of birth"
@@ -130,8 +128,8 @@ class Student {
         $level = 1;
 
         $db = Db::getInstance();
-        $req = $db->prepare('INSERT INTO students (email, password, session, token, pswd_reset, name, phone, institute_id, country, street_address, city, district, state, pin, status, level)
-                VALUES (:email, :password, :session, :token, :pswd_reset, :name, :phone, :institute_id, :country, :street_address, :city, :district, :state, :pin, :status, :level)');
+        $req = $db->prepare('INSERT INTO students (email, password, session, token, pswd_reset, name, phone, dob_d, dob_m, dob_y, institute_id, country, street_address, city, district, state, pin, status, level)
+                VALUES (:email, :password, :session, :token, :pswd_reset, :name, :phone, :dob_d, :dob_m, :dob_y, :institute_id, :country, :street_address, :city, :district, :state, :pin, :status, :level)');
         try {
             $req->execute(array('email' => $email, 'password' => $password, 'session' => $session, 'token' => $token, 'pswd_reset' => $pswd_reset, 'name' => $name,
                     'phone' => $phone, 'dob_d' => $dd, 'dob_m' => $mm, 'dob_y' => $yy, 'institute_id' => $institute_id, 'country' => $country, 'street_address' => $street_address,
