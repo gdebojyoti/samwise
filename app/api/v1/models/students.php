@@ -59,7 +59,7 @@ class Student {
         return $data;
     }
 
-    public static function register($email, $password, $confirm_password, $name, $phone, $institute_id, $country, $street_address, $city, $district, $state, $pin) {
+    public static function register($email, $password, $confirm_password, $name, $phone, $institute_id, $dob, $street_address, $city, $district, $state, $pin, $country) {
         if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $data = array(
                 "sts" => 1,
@@ -82,6 +82,33 @@ class Student {
                 "msg" => "invalid phone number"
             );
             return $data;
+        }
+
+        if(strlen($dob) > 0) {
+            $error = false;
+
+            if (!preg_match("/[0-9]{2}\/[0-9]{2}\/[0-9]{2}/", $dob)) {
+                $error = true;
+            } else {
+                list($dd,$mm,$yy) = explode('/', $dob);
+                if (!checkdate($mm,$dd,$yy)) {
+                    $error = true;
+                } else {
+                    $error = false;
+                }
+            }
+
+            if(!$error) {
+                $data = array(
+                    "sts" => 1,
+                    "msg" => "invalid date of birth"
+                );
+                return $data;
+            }
+        } else {
+            $dd = 0;
+            $mm = 0;
+            $yy = 0;
         }
 
         $password = md5($password);
@@ -107,7 +134,7 @@ class Student {
                 VALUES (:email, :password, :session, :token, :pswd_reset, :name, :phone, :institute_id, :country, :street_address, :city, :district, :state, :pin, :status, :level)');
         try {
             $req->execute(array('email' => $email, 'password' => $password, 'session' => $session, 'token' => $token, 'pswd_reset' => $pswd_reset, 'name' => $name,
-                    'phone' => $phone, 'institute_id' => $institute_id, 'country' => $country, 'street_address' => $street_address,
+                    'phone' => $phone, 'dob_d' => $dd, 'dob_m' => $mm, 'dob_y' => $yy, 'institute_id' => $institute_id, 'country' => $country, 'street_address' => $street_address,
                     'city' => $city, 'district' => $district, 'state' => $state, 'pin' => $pin, 'status' => $status, 'level' => $level));
             $data = array(
                 "sts" => 0,

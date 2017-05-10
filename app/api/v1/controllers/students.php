@@ -36,15 +36,16 @@ switch ($verb) {
             $name = $_POST['name'];
             $phone = $_POST['phone'];
             $institute_id = $_POST['institute_id'];
-            $country = $_POST['country'];
 
+            $dob = isset($_POST['dob']) ? $_POST['dob'] : "";
             $street_address = isset($_POST['street_address']) ? $_POST['street_address'] : "";
             $city = isset($_POST['city']) ? $_POST['city'] : "";
             $district = isset($_POST['district']) ? $_POST['district'] : "";
             $state = isset($_POST['state']) ? $_POST['state'] : "";
             $pin = isset($_POST['pin']) ? $_POST['pin'] : "";
+            $country = isset($_POST['country']) ? $_POST['country'] : "India";
 
-            $data = Student::register($email, $password, $confirm_password, $name, $phone, $institute_id, $country, $street_address, $city, $district, $state, $pin);
+            $data = Student::register($email, $password, $confirm_password, $name, $phone, $institute_id, $dob, $street_address, $city, $district, $state, $pin, $country);
         }
         break;
 
