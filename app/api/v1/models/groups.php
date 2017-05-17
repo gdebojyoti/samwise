@@ -46,7 +46,7 @@ class Group {
         return $data;
     }
 
-    public static function create($name, $created_by) {
+    public static function create($name, $created_by, $student_id_arr) {
         $status = 1;
 
         $db = Db::getInstance();
@@ -54,10 +54,29 @@ class Group {
                 VALUES (:name, :status, :created_by)');
         try {
             $req->execute(array('name' => $name, 'status' => $status, 'created_by' => $created_by));
-            $data = array(
-                "sts" => 0,
-                "msg" => "group created"
-            );
+
+            // get ID of last inserted row
+            $req_get_last_id = $db->prepare('SELECT LAST_INSERT_ID()');
+            $req_get_last_id->execute();
+            $get_last_id = $req_get_last_id->fetch();
+
+            // alter student ID array to include group creator ID
+            $student_id_arr .= "," . $created_by;
+
+            // trigger assign method
+            $result = self::assign($get_last_id[0], $student_id_arr);
+
+            if ($result["sts"] == 0) {
+                $data = array(
+                    "sts" => 0,
+                    "msg" => "group created and students assigned"
+                );
+            } else {
+                $data = array(
+                    "sts" => 1,
+                    "msg" => "group created but no students assigned"
+                );
+            }
         }
         catch (PDOException $e) {
             $err = $e->errorInfo[1];
@@ -70,6 +89,31 @@ class Group {
 
         return $data;
     }
+
+    // public static function create($name, $created_by) {
+    //     $status = 1;
+    //
+    //     $db = Db::getInstance();
+    //     $req = $db->prepare('INSERT INTO groups (name, status, created_by)
+    //             VALUES (:name, :status, :created_by)');
+    //     try {
+    //         $req->execute(array('name' => $name, 'status' => $status, 'created_by' => $created_by));
+    //         $data = array(
+    //             "sts" => 0,
+    //             "msg" => "group created"
+    //         );
+    //     }
+    //     catch (PDOException $e) {
+    //         $err = $e->errorInfo[1];
+    //
+    //         $data = array(
+    //             "sts" => 1,
+    //             "msg" => "unknown error: " . $err
+    //         );
+    //     }
+    //
+    //     return $data;
+    // }
 
     public static function get($id) {
         $db = Db::getInstance();

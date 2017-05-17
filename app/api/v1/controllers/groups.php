@@ -10,11 +10,12 @@ $sts = 0;
 switch ($verb) {
     // Create new group
     case 'create':
-        if(isset($_POST['name']) && trim($_POST['name']) != "") {
+        if(isset($_POST['name']) && trim($_POST['name']) != "" && isset($_POST['students'])) {
             $name = $_POST['name'];
             $created_by = isset($_POST['created_by']) ? $_POST['created_by'] : "";
+            $student_id_arr = $_POST['students'];
 
-            $data = Group::create($name, $created_by);
+            $data = Group::create($name, $created_by, $student_id_arr);
         }
         break;
 
