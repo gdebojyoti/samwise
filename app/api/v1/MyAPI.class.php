@@ -53,4 +53,13 @@ class MyAPI extends API {
             "msg" => "Invalid request"
         );
     }
+
+    protected function files($verb, $args) {
+        require_once "controllers/files.php";
+        if (isset($data)) return $data;
+        else return array(
+            "sts" => -1,
+            "msg" => "Invalid request"
+        );
+    }
 }
