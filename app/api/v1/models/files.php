@@ -8,7 +8,7 @@ class File {
     }
 
     public static function upload($category, $file) {
-        $CATEGORIES = ["STUDENT", "PROJECT", "GROUP", "INSTITUTE"];
+        $CATEGORIES = ["STUDENTS", "PROJECTS", "GROUPS", "INSTITUTES"];
         $FILE_TYPES = ["png", "jpg", "jpeg"];
         $UPLOAD_DIRECTORY_BASE = "../../../user-data/";
 
@@ -16,7 +16,7 @@ class File {
         if (!in_array($category, $CATEGORIES)) {
             return array(
                 "sts" => 1,
-                "data" => "invalid file 'category'"
+                "msg" => "invalid file 'category'"
             );
         }
 
@@ -27,21 +27,30 @@ class File {
         if (!in_array($file_type, $FILE_TYPES)) {
             return array(
                 "sts" => 1,
-                "data" => "invalid file type"
+                "msg" => "invalid file type"
             );
         }
 
         // OPTIONAL: verify file size
 
+        // get current timestamp, and use it to create new file name
+        $time_stamp = (new DateTime())->getTimestamp();
+        $file_name = md5($time_stamp . $file_name) . "." . $file_type;
+
+        // append destination folder name to file name
+        $file_url = strtolower($category) . "/" . $file_name;
+
         // upload file; if success, return URL; else return error
-        $sourcePath = $file['tmp_name']; // Storing source path of the file in a variable
-        $targetPath = $UPLOAD_DIRECTORY_BASE . $file['name']; // Target path where file is to be stored
-        $uploading_file = move_uploaded_file($sourcePath,$targetPath) ; // Moving Uploaded file
+        $source_path = $file['tmp_name']; // storing source path of the file in a variable
+        $target_path = $UPLOAD_DIRECTORY_BASE . $file_url; // target path where file is to be stored
+        $uploading_file = move_uploaded_file($source_path, $target_path) ; // moving Uploaded file
 
         if($uploading_file == 1) {
             $data = array(
                 "sts" => 0,
-                "data" => "file upload successful"
+                "data" => array(
+                    "file_url" => $file_url
+                )
             );
         } else {
             $data = array(
